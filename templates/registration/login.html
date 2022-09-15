@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% load tailwind_filters %}
+{% load static %}
+
+{% block content %}
+  
+    <!-- <div class="h-screen">
+        <div class="container px-6 py-12 h-full">
+            <div class="flex justify-center items-center flex-wrap h-full g-6 text-gray-800">
+                <div class="border border-solid-2 rounded-xl px-6 py-4 bg-sky-200">
+                    <div class="md:w-8/12 lg:w-6/12 mb-12 md:mb-0">
+                        <img src="{% static 'images/hero.svg' %}" class="w-full"
+                            alt="Mountains " />
+                    </div>
+                    <div class="md:w-8/12 lg:w-5/12 lg:ml-20">
+                        <form action="" method="POST">
+                        
+                            {% csrf_token %}
+                            {{ form|crispy }}
+                            <button type='submit' class="text-white bg-black hover:bg-slate-800 px-3 py-2 rounded-full">
+                                Login
+                            </button>
+                            <a class="text-gray-800 hover:text-pink-400" href="{% url 'reset-password' %}">Forgot Password?</a>
+                        
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+    <section class="h-screen">
+        <div class="container px-6 py-12 h-full">
+            <div class="flex justify-center items-center flex-wrap h-full g-6 text-gray-800">
+                <div class="md:w-8/12 lg:w-6/12 mb-12 md:mb-0">
+                    <img src="{% static 'images/login1.svg' %}"
+                        class="w-full" alt="Phone image" />
+                </div>
+                <div class="md:w-8/12 lg:w-5/12 lg:ml-20">
+                    <div
+                        class="flex items-center my-4 before:flex-1 before:border-t before:border-gray-300 before:mt-0.5 after:flex-1 after:border-t after:border-gray-300 after:mt-0.5">
+                        <p class="text-center font-semibold mx-4 mb-0">Welcome to Agua Plumbing</p>
+                    </div>
+                    <form method="POST">
+                       
+                        {% csrf_token %}
+                        {{ form|crispy }}
+                        <button type='submit' class="w-full text-white bg-black hover:bg-slate-800 px-3 py-2 rounded-full">
+                            Log In
+                        </button>
+                        <div class="mt-6 text-center pr-3">
+                            <p class="text-white">Forgot Password?<a class="text-gray-100 hover:text-pink-400" href="{% url 'reset-password' %}"> Click Here</a></p>
+                        </div>
+    
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+{% endblock content %}

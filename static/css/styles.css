@@ -1,0 +1,31 @@
+body {
+    background-image: url(/static/images/background.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#title h2 {
+    letter-spacing: 5px;
+    color: white;
+}
+
+#title h2 span {
+    transition: .5s;
+}
+
+#title h2:hover span:nth-child(1) {
+    margin-right: 10px;
+}
+
+#title h2:hover span {
+    text-shadow: 0 0 10px #fff, 
+                 0 0 20px #fff, 
+                 0 0 40px #fff, 
+                 0 0 80px #fff, 
+                 0 0 120px #fff;
+}
+
+#nav-link:hover {
+    text-shadow: 0 0 10px #fff;
+    transition: .25s;
+}

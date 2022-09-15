@@ -1,0 +1,143 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+<section class="text-gray-600 body-font">
+  {% if request.user.is_authenticated %}
+  <div class="text-center text-white text-sm">
+    {{ request.user|title }} is logged in
+  </div>
+  {% endif %}
+  <div class="container px-5 py-24 mx-auto">
+    {% if request.user.is_authenticated %}
+    <div class="flex flex-col text-center w-full mb-20">
+      <h1 class="sm:text-3xl text-2xl font-medium title-font text-gray-900">Here are the Contracts</h1>
+    </div>
+    <div class="flex justify-center -m-4">
+      {% for contract in contracts %}
+      <div class="p-4 md:w-1/3">
+        <div class="flex rounded-lg h-full bg-gray-100 p-8 flex-col">
+          <div class="flex items-center mb-3">
+            <div
+              class="w-8 h-8 mr-3 inline-flex items-center justify-center rounded-full bg-indigo-500 text-white flex-shrink-0">
+              <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                class="w-5 h-5" viewBox="0 0 24 24">
+                <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+              </svg>
+            </div>
+            <h2 class="text-gray-900 text-lg title-font font-medium">{{ contract.company_name }}</h2>
+          </div>
+          <div class="flex-grow">
+            <p class="leading-relaxed text-base">{{ contract.description }}</p>
+            <a href="{% url 'contracts:contract-detail' contract.pk %}"
+              class="mt-3 text-indigo-500 inline-flex items-center">View Details
+              <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                class="w-4 h-4 ml-2" viewBox="0 0 24 24">
+                <path d="M5 12h14M12 5l7 7-7 7"></path>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+
+      {% else %}
+      <section class="text-gray-600 body-font">
+        <div class="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center">
+          <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6 mb-10 md:mb-0">
+            <img class="object-cover object-center rounded" alt="hero" src="{% static 'images/hero1.svg' %}">
+          </div>
+          <div
+            class="lg:flex-grow md:w-1/2 lg:pl-24 md:pl-16 flex flex-col md:items-start md:text-left items-center text-center">
+            <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">Grow Your Business
+              <br class="hidden lg:inline-block">With Us!
+            </h1>
+            <p class="mb-8 leading-relaxed text-white">Copper mug try-hard pitchfork pour-over freegan heirloom neutra
+              air plant
+              cold-pressed tacos poke beard tote bag. Heirloom echo park mlkshk tote bag selvage hot chicken authentic
+              tumeric
+              truffaut hexagon try-hard chambray.</p>
+            <div class="flex justify-center">
+              <a href="#"
+                class="inline-flex text-white bg-pink-600 border-0 py-2 px-6 focus:outline-none hover:bg-fuchsia-600 rounded-full text-lg">Contact
+                Us</a>
+              <a href="{% url 'login' %}"
+                class="ml-4 inline-flex text-white bg-pink-600 border-0 py-2 px-6 focus:outline-none hover:bg-fuchsia-800 rounded-full text-lg">Sign
+                In</a>
+            </div>
+          </div>
+        </div>
+      </section>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+<section class="text-gray-600 body-font">
+  <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+    <path fill="#259cca" fill-opacity="1"
+      d="M0,224L30,213.3C60,203,120,181,180,144C240,107,300,53,360,80C420,107,480,213,540,224C600,235,660,149,720,117.3C780,85,840,107,900,112C960,117,1020,107,1080,122.7C1140,139,1200,181,1260,192C1320,203,1380,181,1410,170.7L1440,160L1440,0L1410,0C1380,0,1320,0,1260,0C1200,0,1140,0,1080,0C1020,0,960,0,900,0C840,0,780,0,720,0C660,0,600,0,540,0C480,0,420,0,360,0C300,0,240,0,180,0C120,0,60,0,30,0L0,0Z">
+    </path>
+  </svg> -->
+  <div class="container px-5 py-24 mx-auto text-white">
+    <div class="flex flex-col text-center w-full mb-20">
+      <h1 class="text-2xl font-medium title-font mb-4 text-gray-300 tracking-widest">OUR TEAM</h1>
+      <p class="lg:w-2/3 mx-auto leading-relaxed text-base">Whatever cardigan tote bag tumblr hexagon brooklyn
+        asymmetrical gentrify, subway tile poke farm-to-table. Franzen you probably haven't heard of them.</p>
+    </div>
+    <div class="flex flex-wrap -m-4">
+      {% for user in users %}
+        {% if not user.is_superuser %}
+          <div class="p-4 lg:w-1/2">
+            <div
+              class="h-full flex sm:flex-row flex-col items-center sm:justify-start justify-center text-center sm:text-left">
+              <img alt="team" class="flex-shrink-0 rounded-lg w-48 h-48 object-cover object-center sm:mb-0 mb-4"
+                src="https://dummyimage.com/200x200">
+              <div class="flex-grow sm:pl-8">
+                <h2 class="title-font font-medium text-lg text-gray-300">{{ user.first_name }} {{ user.last_name }}</h2>
+                <h3 class="text-gray-400 mb-3">{{ user.email }}</h3>
+                <p class="mb-4">DIY tote bag drinking vinegar cronut adaptogen squid fanny pack vaporware.</p>
+                <span class="inline-flex">
+                  <a class="text-gray-100">
+                    <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      class="w-5 h-5" viewBox="0 0 24 24">
+                      <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
+                    </svg>
+                  </a>
+                  <a class="ml-2 text-gray-100">
+                    <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      class="w-5 h-5" viewBox="0 0 24 24">
+                      <path
+                        d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z">
+                      </path>
+                    </svg>
+                  </a>
+                  <a class="ml-2 text-gray-100">
+                    <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      class="w-5 h-5" viewBox="0 0 24 24">
+                      <path
+                        d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z">
+                      </path>
+                    </svg>
+                  </a>
+                </span>
+              </div>
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+  <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+    <path fill="#259cca" fill-opacity="1"
+      d="M0,224L30,213.3C60,203,120,181,180,144C240,107,300,53,360,80C420,107,480,213,540,224C600,235,660,149,720,117.3C780,85,840,107,900,112C960,117,1020,107,1080,122.7C1140,139,1200,181,1260,192C1320,203,1380,181,1410,170.7L1440,160L1440,320L1410,320C1380,320,1320,320,1260,320C1200,320,1140,320,1080,320C1020,320,960,320,900,320C840,320,780,320,720,320C660,320,600,320,540,320C480,320,420,320,360,320C300,320,240,320,180,320C120,320,60,320,30,320L0,320Z">
+    </path>
+  </svg> -->
+  {% for user in object_list  %}
+    hello {{ object_list.first_name }}
+  {% endfor %}
+</section>
+
+{% endblock content %}

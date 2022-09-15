@@ -1,0 +1,61 @@
+{% load static %}
+
+<header class="border-b bg-transparent mt-5" >
+    <div class="text-gray-600 body-font ">
+        <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+            <a href="/" class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+                    <path fill-rule="evenodd"
+                        d="M11.622 1.602a.75.75 0 01.756 0l2.25 1.313a.75.75 0 01-.756 1.295L12 3.118 10.128 4.21a.75.75 0 11-.756-1.295l2.25-1.313zM5.898 5.81a.75.75 0 01-.27 1.025l-1.14.665 1.14.665a.75.75 0 11-.756 1.295L3.75 8.806v.944a.75.75 0 01-1.5 0V7.5a.75.75 0 01.372-.648l2.25-1.312a.75.75 0 011.026.27zm12.204 0a.75.75 0 011.026-.27l2.25 1.312a.75.75 0 01.372.648v2.25a.75.75 0 01-1.5 0v-.944l-1.122.654a.75.75 0 11-.756-1.295l1.14-.665-1.14-.665a.75.75 0 01-.27-1.025zm-9 5.25a.75.75 0 011.026-.27L12 11.882l1.872-1.092a.75.75 0 11.756 1.295l-1.878 1.096V15a.75.75 0 01-1.5 0v-1.82l-1.878-1.095a.75.75 0 01-.27-1.025zM3 13.5a.75.75 0 01.75.75v1.82l1.878 1.095a.75.75 0 11-.756 1.295l-2.25-1.312a.75.75 0 01-.372-.648v-2.25A.75.75 0 013 13.5zm18 0a.75.75 0 01.75.75v2.25a.75.75 0 01-.372.648l-2.25 1.312a.75.75 0 11-.756-1.295l1.878-1.096V14.25a.75.75 0 01.75-.75zm-9 5.25a.75.75 0 01.75.75v.944l1.122-.654a.75.75 0 11.756 1.295l-2.25 1.313a.75.75 0 01-.756 0l-2.25-1.313a.75.75 0 11.756-1.295l1.122.654V19.5a.75.75 0 01.75-.75z"
+                        clip-rule="evenodd" />
+                </svg>
+                <div id="title">
+                    <h2 class="ml-2"><span>Agua</span>P<span>lumbing</span></h2>
+                </div>
+                <!-- <span class="ml-3 text-xl text-white hover:text-indigo-500">Agua Plumbing</span> -->
+            </a>
+            <nav
+                class="md:mr-auto md:ml-4 md:py-1 md:pl-4 md:border-l md:border-white-400	flex flex-wrap items-center text-base justify-center" >
+                <a id="nav-link" href="/" class="mr-5 text-white hover:text-cyan-200">Home</a>
+                <a id="nav-link" href="{% url 'contracts:contract-create' %}" class="mr-5 text-white hover:text-cyan-200">Add Contracts</a>
+            </nav>
+            <div>
+                {% if not request.user.is_authenticated %}
+                <a href="{% url 'signup' %}"
+                    class="inline-flex items-center bg-pink-600 border-0 py-1 px-3 text-white focus:outline-none hover:bg-fuchsia-500 rounded-full text-sm mr-3 mt-4 md:mt-0">Sign
+                    Up
+                </a>
+                {% endif %}
+
+                {% if request.user.is_authenticated %}
+                <a href="{% url 'logout' %}"
+                    class="inline-flex items-center bg-fuchsia-600 border-0 py-1 px-3 text-white focus:outline-none hover:bg-pink-500 rounded-full text-sm mt-4 md:mt-0">Logout
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5 ml-2">
+                        <path fill-rule="evenodd"
+                            d="M3 4.25A2.25 2.25 0 015.25 2h5.5A2.25 2.25 0 0113 4.25v2a.75.75 0 01-1.5 0v-2a.75.75 0 00-.75-.75h-5.5a.75.75 0 00-.75.75v11.5c0 .414.336.75.75.75h5.5a.75.75 0 00.75-.75v-2a.75.75 0 011.5 0v2A2.25 2.25 0 0110.75 18h-5.5A2.25 2.25 0 013 15.75V4.25z"
+                            clip-rule="evenodd" />
+                        <path fill-rule="evenodd"
+                            d="M19 10a.75.75 0 00-.75-.75H8.704l1.048-.943a.75.75 0 10-1.004-1.114l-2.5 2.25a.75.75 0 000 1.114l2.5 2.25a.75.75 0 101.004-1.114l-1.048-.943h9.546A.75.75 0 0019 10z"
+                            clip-rule="evenodd" />
+                    </svg>
+                </a>
+                {% else %}
+                <a href="{% url 'login' %}"
+                    class="inline-flex items-center bg-pink-600 border-0 py-1 px-3 text-white focus:outline-none hover:bg-fuchsia-500 rounded-full text-sm mr-3 mt-4 md:mt-0">Login
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5 ml-2">
+                        <path fill-rule="evenodd"
+                            d="M3 4.25A2.25 2.25 0 015.25 2h5.5A2.25 2.25 0 0113 4.25v2a.75.75 0 01-1.5 0v-2a.75.75 0 00-.75-.75h-5.5a.75.75 0 00-.75.75v11.5c0 .414.336.75.75.75h5.5a.75.75 0 00.75-.75v-2a.75.75 0 011.5 0v2A2.25 2.25 0 0110.75 18h-5.5A2.25 2.25 0 013 15.75V4.25z"
+                            clip-rule="evenodd" />
+                        <path fill-rule="evenodd"
+                            d="M6 10a.75.75 0 01.75-.75h9.546l-1.048-.943a.75.75 0 111.004-1.114l2.5 2.25a.75.75 0 010 1.114l-2.5 2.25a.75.75 0 11-1.004-1.114l1.048-.943H6.75A.75.75 0 016 10z"
+                            clip-rule="evenodd" />
+                    </svg>
+
+                </a>
+
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</header>
+
